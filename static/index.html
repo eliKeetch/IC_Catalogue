@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Component Catalogue</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Component Catalogue</h1>
+        <p>Inventory, pinouts, docs, and project notes for parts on hand.</p>
+      </div>
+      <button id="new-component" class="primary">Add Component</button>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <label for="search">Search</label>
+        <input id="search" type="search" placeholder="555, sensor, MOSFET">
+
+        <label for="category-filter">Category</label>
+        <select id="category-filter">
+          <option value="">All categories</option>
+        </select>
+
+        <section class="stats">
+          <span id="component-count">0 components</span>
+          <span id="part-count">0 total parts</span>
+        </section>
+      </aside>
+
+      <section class="content">
+        <div id="component-list" class="component-list"></div>
+      </section>
+
+      <aside class="detail" id="detail">
+        <div class="empty-detail">Select a component to see documentation, pinouts, and project ideas.</div>
+      </aside>
+    </main>
+
+    <dialog id="component-dialog">
+      <form id="component-form" method="dialog">
+        <div class="dialog-head">
+          <h2 id="dialog-title">Add Component</h2>
+          <button type="button" id="close-dialog" class="ghost">Close</button>
+        </div>
+
+        <input type="hidden" id="component-id">
+
+        <div class="form-grid">
+          <label>Name<input id="name" required placeholder="ATmega328P"></label>
+          <label>Category<input id="category" placeholder="Microcontroller"></label>
+          <label>Package<input id="package" placeholder="DIP-28, SOT-23, Module"></label>
+          <label>Quantity<input id="quantity" type="number" min="0" value="0"></label>
+          <label>Location<input id="location" placeholder="Drawer B / Bin 4"></label>
+          <label>Pinout Model<input id="model_type" placeholder="dip_08, mosfet_to220_3pin"></label>
+          <label>Datasheet URL<input id="datasheet_url" type="url" placeholder="https://..."></label>
+        </div>
+
+        <label>Summary<textarea id="summary" rows="3" placeholder="What it is and why it matters"></textarea></label>
+        <label>Common Uses<textarea id="uses" rows="4" placeholder="One use per line"></textarea></label>
+        <label>Project Ideas<textarea id="project_ideas" rows="4" placeholder="One idea per line"></textarea></label>
+        <label>Pinout<textarea id="pins" rows="5" placeholder="1: GND - Ground&#10;2: VCC - Supply voltage"></textarea></label>
+        <label>Documents<textarea id="documents" rows="3" placeholder="data/docs/part-datasheet.pdf&#10;data/docs/schematic.png"></textarea></label>
+        <label>Notes<textarea id="notes" rows="4" placeholder="Substitutes, voltage limits, gotchas, tested circuits"></textarea></label>
+
+        <div class="dialog-actions">
+          <button type="submit" class="primary">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
